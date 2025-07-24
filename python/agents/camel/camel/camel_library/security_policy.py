@@ -77,7 +77,7 @@ def base_security_policy(
   """
   r = [capabilities_utils.get_all_readers(data) for data in kwargs.values()]
   if (
-      any(reader != readers.Public() for reader in r)
+      any(reader[0] != readers.Public() for reader in r)
       and tool_name not in no_side_effect_tools
   ):
     return Denied("Data is not public.")
